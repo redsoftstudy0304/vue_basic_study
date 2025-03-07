@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <body>
+    <div id="app1">{{msg}}</div>
+    <div id="app2">{{msg}}</div>
+  </body>
+  <script>
+
+    //생성자로 VUE 객체 생성
+    var vm1 = new Vue({
+      el: "#app1",
+      data: { msg: "test1" },
+    });
+
+    //객체 분리
+    var vueInstance = {
+      el: "#app2",
+      data: { msg: "test2" },
+    }
+    var vm2 = new Vue(vueInstance);
+  </script>
+</html>

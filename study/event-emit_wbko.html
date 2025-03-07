@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!--  <app-header v-on:하위 컴포넌트에서 발생한 이벤트="상위컴포넌트의 메서드"></app-header> -->
+      <app-header v-on:passed="pass"></app-header>
+      <app-content  v-on:touched="touch"></app-content>
+      {{msg2}}
+    </div>
+  </body>
+  <script>
+    var appHeader = {
+      template: '<button v-on:click="passEvent">UP!!!</button>',
+      methods:{
+        passEvent : function(){
+            this.$emit('passed');
+        }
+      }
+    }
+    var appContent = {
+      template: '<button v-on:click="touchEvent">ADD!!!</button>',
+      methods:{
+        touchEvent : function(){
+            this.$emit('touched');
+        }
+      }
+    }
+
+    new Vue({
+      el: "#app",
+      components: { "app-header": appHeader, "app-content": appContent},
+      data: {
+        msg: 'test',
+        msg2: 1,
+      },
+      methods : {
+        pass : function() {
+            this.touch();
+            console.log(this.msg2);
+        },
+        touch : function() {
+            console.log(this.msg);
+            this.msg2++;
+        },
+      }
+    })
+  </script>
+</html>
