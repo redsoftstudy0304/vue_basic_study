@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 데이터바인딩 -->
+      <p>{{num}}</p>
+      <p>{{doubleNum}}</p>
+      <p v-bind:style="styles">xxxxxxxxxxxxxxx</p>
+      <input v-model="loading" v-bind:type="inputType" />
+      <br>
+      <div v-if="loading">loading...</div>
+      <div v-else>DONE</div>
+      <!-- v-if는 element가 실제로 삭제, v-show는 화면에 표시만 안될 뿐(display : none) element는 그대로 남아있음 -->
+      <div v-show="loading">loading...</div>
+      <input v-model="msg" placeholder="msg" />
+      <p>{{msg}}</p>
+    </div>
+  </body>
+  <script>
+    var styles = {
+      color: "red",
+    };
+
+    var inputType = "checkbox";
+
+    new Vue({
+      el: "#app",
+      data: {
+        users: "hi",
+        num: 10,
+        uuid: "TEST",
+        styles,
+        inputType,
+        loading: false,
+        msg: '',
+      },
+      computed: {
+        doubleNum: function () {
+          return this.num * 3;
+        },
+      },
+    });
+  </script>
+</html>

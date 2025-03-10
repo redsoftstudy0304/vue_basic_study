@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <button v-on:click="getData">get user</button>
+      <div>{{ users }}</div>
+    </div>
+  </body>
+  <script>
+    new Vue({
+      el: "#app",
+      data: {
+        users: [],
+      },
+      methods: {
+        getData: function () {
+         //axios 안에서 this.users 사용 안됨. axios안의 this는 바깥의 this와 다름.
+          var vm = this;
+          axios
+            .get("https://jsonplaceholder.typicode.com/users/")
+            .then(function (response) {
+              console.log(response.data);
+              vm.users = response.data;
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+        },
+      },
+    });
+  </script>
+</html>
