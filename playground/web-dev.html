@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+    </div>
+
+    <script>
+        var div = document.querySelector('#app');
+        var str = 'Hello world'
+
+        div.innerHTML = str;
+
+        str = 'Hello world!!!';
+        // 값을 바꿀 때마다 다시 할당해야 함
+        div.innerHTML = str;
+    </script>
+</body>
+</html>

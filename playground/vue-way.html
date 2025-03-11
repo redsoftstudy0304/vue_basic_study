@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+    </div>
+
+    <script>
+        var div = document.querySelector('#app');
+        var viewModel = {};
+
+        // JavaScript 즉시실행함수: 로직이 노출되지 않게 함. 변수의 유효범위를 관리하는 방법
+        (function() {
+            function init() {
+                // Object.defineProperty(대상 객체, 객체의 속성, {정의할 내용})
+                Object.defineProperty(viewModel, 'str', {
+                    // 속성에 접근했을 때의 동작을 정의하는 함수
+                    get: function() {
+                        console.log('접근!');
+                    },
+                    // 속성에 값을 할당했을 때의 동작을 정의하는 함수
+                    set: function(newVal) {
+                        render(newVal);
+                    }
+                })
+            }
+            function render(value) {
+                // 값을 바꿀 때마다 자동으로 화면이 바뀌게 됨 => 리액티비티(반응성)
+                // 리액티비티: 데이터의 변화를 라이브러리에서 감지해서 화면을 자동으로 그려줌
+                div.innerHTML = value;
+            }
+            init();
+        })();
+    </script>
+</body>
+</html>
