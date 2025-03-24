@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+      <div>
+        <!-- 라우터에서 페이지 이동을 하기 위한 링크 태그 -->
+        <router-link to="/login">Login</router-link>
+        <router-link to="/main">Main</router-link>
+      </div>
+      <!-- 페아자의 URL이 변경되었을 때 그 URL에 따라서 뿌려지는 영역 -->
+      <router-view></router-view>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router@3.5.3/dist/vue-router.js"></script>
+    
+    <script>
+      var LoginComponent = {
+        template: '<div>로그인 컴포넌트입니다.</div>'
+      }
+
+      var MainComponent = {
+        template: '<div>메인 컴포넌트입니다.</div>'
+      }
+      
+      var router = new VueRouter({
+        mode: 'history',
+        // 페이지의 라우팅 정보
+        // 어떤 URL로 이동할 때 어떤 페이지가 뿌려질 지에 대한 정보
+        routes: [
+          {
+            // 페이지의 url
+            path: '/login',
+            // 해당 url에서 표시될 컴포넌트
+            component: LoginComponent
+          },
+          {
+            path: '/main',
+            component: MainComponent
+          }
+        ]
+      });
+
+        new Vue({
+            el: '#app',
+            router: router
+        });
+    </script>
+</body>
+</html>
