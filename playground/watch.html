@@ -9,26 +9,36 @@
     <div id="app">
       <button v-on:click="fnIncreaseNum">Increase</button>
       <span>{{ num }}</span>
+      <span>{{ doubleNum }}</span>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
         new Vue({
-          el: '#app',
+          el: '#app', 
           data: {
             num: 10
           },
+          // 로직 실행의 기준이 data의 속성임
+          // validation 또는 간단한 연산을 할 때 주로 사용
+          computed: {
+            doubleNum: function() {
+              return this.num * 2;
+            }
+          },
           // 데이터의 변화에 따라서 특정 로직을 실행하는 속성
+          // 매번 실행되는 게 부담스러운 무거운 로직
+          // 데이터 요청에 적합
           watch: {
-            num: function() {
-              this.logText();
+            num: function(newValue, oldValue) {
+              this.logText(newValue, oldValue);
             }
           },
           methods: {
             fnIncreaseNum: function() {
               this.num ++;
             },
-            logText: function() {
-              console.log("changed");
+            logText: function(num, num2) {
+              console.log(num + " " + num2);
             }
           }
         });
